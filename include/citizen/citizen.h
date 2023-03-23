@@ -55,7 +55,7 @@ namespace citizen {
 
 	class Citizen_list {
     public:
-        static const int CAPACITY = 10;
+        static const int CAPACITY = 11;
 
     private:
         Citizen _citizen[CAPACITY];
