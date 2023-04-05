@@ -121,19 +121,3 @@ void Citizen::set_experience(int experience) {
 	if (experience < 0)
 		throw runtime_error("[set_experience()] Invalid set type.");
 }
-
-bool citizen::operator==(const Citizen& lhs, const Citizen& rhs) {
-	return
-		lhs.get_type() == rhs.get_type() &&
-		lhs.get_last_name() == rhs.get_last_name() &&
-		lhs.get_first_name() == rhs.get_first_name() &&
-		lhs.get_middle_name() == rhs.get_middle_name() &&
-		lhs.get_school_name() == rhs.get_school_name() &&
-		lhs.get_university_name() == rhs.get_university_name() &&
-		lhs.get_school_ID_number() == rhs.get_school_ID_number() &&
-		lhs.get_student_ID_number() == rhs.get_student_ID_number() &&
-		lhs.get_snils() == rhs.get_snils() &&
-		lhs.get_average_grade() == rhs.get_average_grade() &&
-		lhs.get_experience() == rhs.get_experience() &&
-		lhs.get_large_fam() == rhs.get_large_fam();
-}

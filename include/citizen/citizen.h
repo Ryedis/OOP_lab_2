@@ -56,8 +56,6 @@ namespace citizen {
 
 	};
 
-	bool operator==(const Citizen& lhs, const Citizen& rhs);
-
 	class Citizen_list {
     public:
         static const int CAPACITY = 11;
