@@ -23,43 +23,53 @@ Citizen::Citizen( CitizenType _type, string last_name, string first_name, string
 	this->university_name = university_name;
 	this->student_ID_number = student_ID_number;
 	this->average_grade = average_grade;
+	if (average_grade < 0.0 || average_grade > 5.0)
+		throw runtime_error("[Citizen()] Invalid constructor type.");
+		
 }
-Citizen::Citizen( CitizenType _type, string last_name, string first_name, string middle_name, string SNILS, int experience ) {
+Citizen::Citizen( CitizenType _type, string last_name, string first_name, string middle_name, string snils, int experience ) {
 	this->_type = _type;
 	this->last_name = last_name;
 	this->first_name = first_name;
 	this->middle_name = middle_name;
-	this->SNILS = SNILS;
+	this->snils = snils;
 	this->experience = experience;
+	if (experience < 0)
+		throw runtime_error("[Citizen()] Invalid constructor type.");
 }
 
-Citizen::Citizen() : _type(CitizenType::Schoolboy), last_name(""), first_name(""), middle_name(""), school_name(""), shool_ID_number(0), large_fam(false) { }
+Citizen::Citizen() : _type(CitizenType::Schoolboy), last_name("Johnny"), first_name("Dale"), middle_name("Rudio"), school_name("Aston_school"), shool_ID_number(123456), large_fam(false) { }
 
 double Citizen::payment() {
-	double payment = 0;
+	double payment = 0.0;
 	switch (_type) {
 	case CitizenType::Schoolboy:
+	{
 		if (large_fam == true)
 			payment = 0.5 * min_wage;
 		break;
+	}
 
 	case CitizenType::Student:
-		if (average_grade >= 3.5 && average_grade <= 5)
-			payment = (-0, 2 + 0, 2 * average_grade) * min_wage;
+	{
+		if (average_grade >= 3.5 && average_grade <= 5.0)
+			payment = (-0.2 + 0.2 * average_grade) * min_wage;
 		break;
+	}
 
 	case CitizenType::Pensioner:
 		if (experience >= 5 && experience <= 30)
-			payment = (0, 4 + 0, 12 * experience) * min_wage;
+			payment = (0.4 + 0.12 * experience) * min_wage;
 		if (experience > 30)
 			payment = 5 * min_wage;
 		break;
-	default:
-		throw runtime_error("[Citizen::payment] Invalid function type.");
-		return payment;
 	}
+	return payment;
 }
 
+CitizenType Citizen::get_type() const {
+	return _type;
+}
 string Citizen::get_last_name() const {
 	return last_name;
 }
@@ -87,11 +97,15 @@ int Citizen::get_student_ID_number() const {
 double Citizen::get_average_grade() const {
 	return average_grade;
 }
-string Citizen::get_SNILS() const {
-	return SNILS;
+string Citizen::get_snils() const {
+	return snils;
 }
 int Citizen::get_experience() const {
 	return experience;
+}
+
+void Citizen::set_citizen_type(CitizenType _type) {
+	this->_type = _type;
 }
 
 void Citizen::set_large_fam(bool large_fam) {
@@ -99,11 +113,11 @@ void Citizen::set_large_fam(bool large_fam) {
 }
 void Citizen::set_average_grade(double average_grade) {
 	this->average_grade = average_grade;
-
+	if (average_grade < 0.0 || average_grade > 5.0)
+		throw runtime_error("[set_average_grade()] Invalid set type.");
 }
 void Citizen::set_experience(int experience) {
 	this->experience = experience;
-
+	if (experience < 0)
+		throw runtime_error("[set_experience()] Invalid set type.");
 }
-
-//заху€рить исключени€ нада
