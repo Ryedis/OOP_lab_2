@@ -77,14 +77,14 @@ TEST(citizen_test, payment_Pensioner)
 	EXPECT_NEAR(Pensioner6.payment(), 81000, EPSILON);
 }
 TEST(citizen_test, exceptions) {
-	EXPECT_THROW(Citizen incorrect_student1(CitizenType::Student, "Samantha", "Sims", "Pace", "Massachusetts", 615234, -3.0), runtime_error);
-	EXPECT_THROW(Citizen incorrect_student2(CitizenType::Student, "Kiera", "Sanchez", "Cain", "SamaraUniversity", 134324, 7.0), runtime_error);
+	EXPECT_THROW(Citizen incorrect_student1(CitizenType::Student, "Samantha", "Sims", "Pace", "Massachusetts", 615234, -3.0), invalid_argument);
+	EXPECT_THROW(Citizen incorrect_student2(CitizenType::Student, "Kiera", "Sanchez", "Cain", "SamaraUniversity", 134324, 7.0), invalid_argument);
 
 	Citizen Student1;
-	EXPECT_THROW(Student1.set_average_grade(-2), runtime_error);
-	EXPECT_THROW(Student1.set_average_grade(7), runtime_error);
+	EXPECT_THROW(Student1.set_average_grade(-2), invalid_argument);
+	EXPECT_THROW(Student1.set_average_grade(7), invalid_argument);
 
-	EXPECT_THROW(Citizen incorrect_pensioner(CitizenType::Student, "Riley", "Knight", "Ray", "677-351-892-48", -23), runtime_error);
+	EXPECT_THROW(Citizen incorrect_pensioner(CitizenType::Student, "Riley", "Knight", "Ray", "677-351-892-48", -23), invalid_argument);
 	Citizen Pensioner1;
-	EXPECT_THROW(Pensioner1.set_experience(-1), runtime_error);
+	EXPECT_THROW(Pensioner1.set_experience(-1), invalid_argument);
 }

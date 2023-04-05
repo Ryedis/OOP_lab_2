@@ -24,7 +24,7 @@ Citizen::Citizen( CitizenType _type, string last_name, string first_name, string
 	this->student_ID_number = student_ID_number;
 	this->average_grade = average_grade;
 	if (average_grade < 0.0 || average_grade > 5.0)
-		throw runtime_error("[Citizen()] Invalid constructor type.");
+		throw invalid_argument("[Citizen()] Invalid constructor type.");
 		
 }
 Citizen::Citizen( CitizenType _type, string last_name, string first_name, string middle_name, string snils, int experience ) {
@@ -35,7 +35,7 @@ Citizen::Citizen( CitizenType _type, string last_name, string first_name, string
 	this->snils = snils;
 	this->experience = experience;
 	if (experience < 0)
-		throw runtime_error("[Citizen()] Invalid constructor type.");
+		throw invalid_argument("[Citizen()] Invalid constructor type.");
 }
 
 Citizen::Citizen() : _type(CitizenType::Schoolboy), last_name("Johnny"), first_name("Dale"), middle_name("Rudio"), school_name("Aston_school"), shool_ID_number(123456), large_fam(false) { }
@@ -114,12 +114,12 @@ void Citizen::set_large_fam(bool large_fam) {
 void Citizen::set_average_grade(double average_grade) {
 	this->average_grade = average_grade;
 	if (average_grade < 0.0 || average_grade > 5.0)
-		throw runtime_error("[set_average_grade()] Invalid set type.");
+		throw invalid_argument("[set_average_grade()] Invalid set type.");
 }
 void Citizen::set_experience(int experience) {
 	this->experience = experience;
 	if (experience < 0)
-		throw runtime_error("[set_experience()] Invalid set type.");
+		throw invalid_argument("[set_experience()] Invalid set type.");
 }
 
 bool citizen::operator==(const Citizen& lhs, const Citizen& rhs) {

@@ -28,6 +28,9 @@ void Citizen_list::insert(int index, const Citizen citizen) {
     if (_size == CAPACITY) {
         throw runtime_error("[Citizen_list::add] Capacity is reached.");
     }
+    if (index < 0 || _size <= index) {
+        throw out_of_range("[Citizen_list::operator[]] Index is out of range.");
+    }
     for (int i = _size-1; i >= index; i--)
         _citizen[i+1] = _citizen[i];
 
@@ -36,7 +39,10 @@ void Citizen_list::insert(int index, const Citizen citizen) {
 }
 
 void Citizen_list::remove(int index) {
-    for(int i = index; i < _size; i++)
+    if (index < 0 || _size <= index) {
+        throw out_of_range("[Citizen_list::remove()] Index is out of range.");
+    }
+    for(int i = index; i < _size-1; i++)
         _citizen[i] = _citizen[i + 1];
     _size--;
 }
