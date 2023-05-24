@@ -3,7 +3,7 @@
 
 namespace citizen {
 	
-	const int min_wage = 16200;
+	//const int min_wage = 16200;
 	const float EPSILON = 0.00001f;
 	
 	enum class CitizenType{
@@ -12,8 +12,13 @@ namespace citizen {
 		Pensioner
 	};
 
+	class Citizen;
+
+	using CitizenPtr = Citizen*;
+
 	class Citizen {
 		CitizenType _type;
+		int min_wage;
 
 		std::string last_name;
 		std::string first_name;
@@ -31,7 +36,6 @@ namespace citizen {
 		int experience;
 
 	public:
-		Citizen();
 		Citizen(CitizenType _type, std::string last_name, std::string first_name, std::string middle_name, std::string school_name, int shool_ID_number, bool large_fam); //Schoolboy
 		Citizen(CitizenType _type, std::string last_name, std::string first_name, std::string middle_name, std::string university_name, int student_ID_number, double average_grade); //Student
 		Citizen(CitizenType _type, std::string last_name, std::string first_name, std::string middle_name, std::string snils, int experience); //Pensioner
@@ -53,25 +57,32 @@ namespace citizen {
 		void set_large_fam(bool large_fam);
 		void set_average_grade(double average_grade);
 		void set_experience(int experience);
+		void set_min_wage(int min_wage);
 
+		CitizenPtr clone() const;
 	};
 
 	bool operator==(const Citizen& lhs, const Citizen& rhs);
 
-	class Citizen_list {
-    public:
-        static const int CAPACITY = 5;
+	class CitizenList {
 
-    private:
-        Citizen _citizen[CAPACITY];
+		CitizenPtr* _citizen;
         int _size;
 
     public:
-        Citizen_list();
+        CitizenList();
+		CitizenList(const CitizenList& other);
 		int size() const;
-        Citizen operator[](int index) const;
-		void add(const Citizen citizen);
-		void insert(int index, Citizen citizen);
+		CitizenList& operator=(const CitizenList& rhs);
+		int size() const;
+		CitizenPtr operator[](int index) const;
+		void add(CitizenPtr citizen);
+		void swap(CitizenList& other);
+		void insert(CitizenPtr citizen, int index);
 		void remove(int index);
+		void installation(CitizenPtr citizen, int index);
+		~CitizenList();
+
     };
+	int search_max_payment(const CitizenList& _citizen);
 }

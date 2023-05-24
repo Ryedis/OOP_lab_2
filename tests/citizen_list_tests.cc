@@ -5,8 +5,8 @@
 using namespace citizen;
 using namespace std;
 
-TEST(citizen_list_test, size_add) {
-	Citizen_list test_list;
+TEST(CitizenList_test, size_add) {
+	CitizenList test_list;
 
 	EXPECT_EQ(test_list.size(), 0);
 
@@ -16,8 +16,8 @@ TEST(citizen_list_test, size_add) {
 	EXPECT_EQ(test_list.size(), 1);
 }
 
-TEST(citizen_list_test, insert) {
-	Citizen_list test_list;
+TEST(CitizenList_test, insert) {
+	CitizenList test_list;
 	Citizen Citizen1, Citizen2, Citizen3;
 	test_list.add(Citizen1);
 	test_list.add(Citizen2);
@@ -28,8 +28,26 @@ TEST(citizen_list_test, insert) {
 
 }
 
-TEST(citizen_list_test, remove) {
-	Citizen_list test_list;
+TEST(CitizenList_test, installation) {
+	CitizenList test_list;
+	Citizen Citizen1, Citizen2, Citizen3;
+	test_list.add(Citizen1);
+	test_list.add(Citizen2);
+
+	test_list.installation(1, Citizen3);
+
+	EXPECT_EQ(test_list[1], Citizen3);
+
+}
+
+
+TEST(
+	
+	
+	
+	
+	_test, remove) {
+	CitizenList test_list;
 	Citizen Citizen1, Citizen2, Citizen3;
 	test_list.add(Citizen1);
 	test_list.add(Citizen2);
@@ -41,8 +59,8 @@ TEST(citizen_list_test, remove) {
 
 }
 
-TEST(citizen_list, exceptions) {
-	Citizen_list test_list;
+TEST(CitizenList, exceptions) {
+	CitizenList test_list;
 	EXPECT_THROW(test_list[6], out_of_range);
 
 	Citizen Citizen1, Citizen2, Citizen3, Citizen4, Citizen5;

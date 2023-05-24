@@ -38,8 +38,6 @@ Citizen::Citizen( CitizenType _type, string last_name, string first_name, string
 		throw invalid_argument("[Citizen()] Invalid constructor type.");
 }
 
-Citizen::Citizen() : _type(CitizenType::Schoolboy), last_name("Johnny"), first_name("Dale"), middle_name("Rudio"), school_name("Aston_school"), shool_ID_number(123456), large_fam(false) { }
-
 double Citizen::payment() {
 	double payment = 0.0;
 	switch (_type) {
@@ -103,11 +101,9 @@ string Citizen::get_snils() const {
 int Citizen::get_experience() const {
 	return experience;
 }
-
 void Citizen::set_citizen_type(CitizenType _type) {
 	this->_type = _type;
 }
-
 void Citizen::set_large_fam(bool large_fam) {
 	this->large_fam = large_fam;
 }
@@ -120,6 +116,24 @@ void Citizen::set_experience(int experience) {
 	this->experience = experience;
 	if (experience < 0)
 		throw invalid_argument("[set_experience()] Invalid set type.");
+}
+void Citizen::set_min_wage(int min_wage) {
+	this->min_wage = min_wage;
+}
+
+CitizenPtr Citizen::clone() const
+{
+	switch (_type)
+	{
+	case::CitizenType::Schoolboy:
+		return new Citizen(_type, last_name, first_name, middle_name, school_name, shool_ID_number, large_fam);
+	case::CitizenType::Student:
+		return new Citizen(_type, last_name, first_name, middle_name, university_name, student_ID_number, average_grade);
+	case::CitizenType::Pensioner:
+		return new Citizen(_type, last_name, first_name, middle_name, snils, experience);
+	default:
+		throw runtime_error("[Citizen::compute_derivative] Invalid citizen type.");
+	}
 }
 
 bool citizen::operator==(const Citizen& lhs, const Citizen& rhs) {
