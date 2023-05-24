@@ -67,11 +67,15 @@ void CitizenList::insert(CitizenPtr citizen, int index) {
     _size++;
 }
 
-void CitizenList::insert(CitizenPtr citizen, int index) {
+void CitizenList::installation(CitizenPtr citizen, int index) {
     if (index < 0 || _size <= index) {
         throw out_of_range("[CitizenList::operator[]] Index is out of range.");
     }
     auto copy = new CitizenPtr[_size];
+    for (int i = 0; i < _size; i++)
+    {
+        copy[i] = _citizen[i];
+    }
     copy[index] = citizen;
     delete[] _citizen;
     _citizen = copy;

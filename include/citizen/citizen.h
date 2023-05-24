@@ -3,7 +3,7 @@
 
 namespace citizen {
 	
-	//const int min_wage = 16200;
+	const int min_wage = 16200;
 	const float EPSILON = 0.00001f;
 	
 	enum class CitizenType{
@@ -18,7 +18,6 @@ namespace citizen {
 
 	class Citizen {
 		CitizenType _type;
-		int min_wage;
 
 		std::string last_name;
 		std::string first_name;
@@ -35,10 +34,15 @@ namespace citizen {
 		std::string snils;
 		int experience;
 
-	public:
 		Citizen(CitizenType _type, std::string last_name, std::string first_name, std::string middle_name, std::string school_name, int shool_ID_number, bool large_fam); //Schoolboy
 		Citizen(CitizenType _type, std::string last_name, std::string first_name, std::string middle_name, std::string university_name, int student_ID_number, double average_grade); //Student
 		Citizen(CitizenType _type, std::string last_name, std::string first_name, std::string middle_name, std::string snils, int experience); //Pensioner
+		
+	public:
+		Citizen();
+		static CitizenPtr create_schoolboy(std::string last_name, std::string first_name, std::string middle_name, std::string school_name, int shool_ID_number, bool large_fam);
+		static CitizenPtr create_student(std::string last_name, std::string first_name, std::string middle_name, std::string university_name, int student_ID_number, double average_grade);
+		static CitizenPtr create_pensioner(std::string last_name, std::string first_name, std::string middle_name, std::string snils, int experience);
 		double payment();
 		CitizenType get_type() const;
 		std::string get_last_name() const;
@@ -57,7 +61,6 @@ namespace citizen {
 		void set_large_fam(bool large_fam);
 		void set_average_grade(double average_grade);
 		void set_experience(int experience);
-		void set_min_wage(int min_wage);
 
 		CitizenPtr clone() const;
 	};
@@ -74,7 +77,6 @@ namespace citizen {
 		CitizenList(const CitizenList& other);
 		int size() const;
 		CitizenList& operator=(const CitizenList& rhs);
-		int size() const;
 		CitizenPtr operator[](int index) const;
 		void add(CitizenPtr citizen);
 		void swap(CitizenList& other);

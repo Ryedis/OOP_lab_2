@@ -5,6 +5,17 @@
 using namespace citizen;
 using namespace std;
 
+CitizenPtr Citizen::create_schoolboy(string last_name, string first_name, string middle_name, string school_name, int shool_ID_number, bool large_fam) {
+	return new Citizen(CitizenType::Schoolboy, last_name, first_name, middle_name, school_name, shool_ID_number, large_fam);
+}
+CitizenPtr Citizen::create_student(string last_name, string first_name, string middle_name, string university_name, int student_ID_number, double average_grade) {
+	return new Citizen(CitizenType::Student, last_name, first_name, middle_name, university_name, student_ID_number, average_grade);
+}
+CitizenPtr Citizen::create_pensioner(string last_name, string first_name, string middle_name, string snils, int experience) {
+	return new Citizen(CitizenType::Pensioner, last_name, first_name, middle_name, snils, experience);
+}
+
+Citizen::Citizen() : _type(CitizenType::Schoolboy), last_name("asd"), first_name("asd"), middle_name("asd"), school_name("asd"), shool_ID_number(123345), large_fam(true) {}
 Citizen::Citizen( CitizenType _type, string last_name, string first_name, string middle_name, string school_name, int shool_ID_number, bool large_fam ) {
 	this->_type = _type;
 	this->last_name = last_name;
@@ -14,7 +25,6 @@ Citizen::Citizen( CitizenType _type, string last_name, string first_name, string
 	this->shool_ID_number = shool_ID_number;
 	this->large_fam = large_fam;
 }
-
 Citizen::Citizen( CitizenType _type, string last_name, string first_name, string middle_name, string university_name, int student_ID_number, double average_grade ) {
 	this->_type = _type;
 	this->last_name = last_name;
@@ -116,9 +126,6 @@ void Citizen::set_experience(int experience) {
 	this->experience = experience;
 	if (experience < 0)
 		throw invalid_argument("[set_experience()] Invalid set type.");
-}
-void Citizen::set_min_wage(int min_wage) {
-	this->min_wage = min_wage;
 }
 
 CitizenPtr Citizen::clone() const
