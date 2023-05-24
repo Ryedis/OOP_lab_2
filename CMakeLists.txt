@@ -33,3 +33,6 @@ add_executable(citizen-tests
     "tests/citizen_tests.cc"
 )
 target_link_libraries(citizen-tests citizen GTest::gtest_main)
+
+add_executable(console "console/console.cc")
+target_link_libraries(console citizen)

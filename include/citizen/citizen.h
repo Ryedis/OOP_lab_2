@@ -1,4 +1,5 @@
 #pragma once
+#include<iostream>
 #include<string>
 
 namespace citizen {
@@ -15,6 +16,8 @@ namespace citizen {
 	class Citizen;
 
 	using CitizenPtr = Citizen*;
+
+	std::ostream& operator<<(std::ostream& stream, const CitizenPtr& people);
 
 	class Citizen {
 		CitizenType _type;

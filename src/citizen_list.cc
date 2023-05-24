@@ -29,6 +29,26 @@ CitizenList& CitizenList::operator=(const CitizenList& rhs) {
     return *this;
 }
 
+std::ostream& citizen::operator<<(std::ostream& stream, const CitizenPtr& people)
+{
+    switch (people->get_type())
+    {
+    case::CitizenType::Schoolboy:
+        stream << endl << "\tШкольник: \t" << endl << people->get_last_name() << " " << people->get_first_name() << " " << people->get_middle_name() << endl << "Название школы: " << people->get_school_name() << endl
+            << "номер ученического билета: " << people->get_school_ID_number() << endl << "Принадлежность к многодетной семье: " << people->get_large_fam() << endl << "Размер выплаты: " << people->payment() << endl << endl;
+        return stream;
+    case::CitizenType::Student:
+        stream << endl << "\tСтудент: \t" << endl << people->get_last_name() << " " << people->get_first_name() << " " << people->get_middle_name() << endl << "Название университета: " << people->get_university_name() << endl
+            << "номер зачётной книжки: " << people->get_student_ID_number() << endl << "средний балл: " << people->get_average_grade() << endl << "Размер выплаты: " << people->payment() << endl << endl;
+        return stream;
+    case::CitizenType::Pensioner:
+        stream << endl << "\tПенсионер: \t" << endl << people->get_last_name() << " " << people->get_first_name() << " " << people->get_middle_name() << endl << "СНИЛС: " << people->get_snils() << endl << "стаж: " << people->get_experience() << endl << "Размер выплаты: " << people->payment() << endl << endl;
+        return stream;
+    default:
+        throw runtime_error("[Function::compute_derivative] Invalid function type.");
+    }
+}
+
 void CitizenList::swap(CitizenList& other) {
     std::swap(this->_citizen, other._citizen);
     std::swap(this->_size, other._size);
