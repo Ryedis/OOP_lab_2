@@ -76,7 +76,7 @@ namespace citizen {
         int _size;
 
     public:
-        CitizenList();
+		CitizenList();
 		CitizenList(const CitizenList& other);
 		int size() const;
 		CitizenList& operator=(const CitizenList& rhs);
@@ -91,3 +91,4 @@ namespace citizen {
     };
 	int search_max_payment(const CitizenList& _citizen);
 }
+

@@ -54,8 +54,9 @@ void CitizenList::swap(CitizenList& other) {
     std::swap(this->_size, other._size);
 }
 
+
 void CitizenList::add(CitizenPtr const citizen) {
-    auto new_citizen = new CitizenPtr[_size + 1];
+    auto new_citizen = new Citizen* [_size + 1];
 
     for (int i = 0; i < _size; ++i) {
         new_citizen[i] = _citizen[i];
@@ -68,7 +69,7 @@ void CitizenList::add(CitizenPtr const citizen) {
 }
 
 void CitizenList::insert(CitizenPtr citizen, int index) {
-    if (index < 0 || _size <= index) {
+    if (index < 0 || _size <= index ) {
         throw out_of_range("[CitizenList::operator[]] Index is out of range.");
     }
     auto copy = new CitizenPtr[_size + 1];

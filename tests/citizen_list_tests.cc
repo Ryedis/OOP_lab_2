@@ -32,6 +32,7 @@ TEST(CitizenListTest, insert) {
 
 TEST(CitizenListTest, installation) {
 	CitizenList test_list;
+	
 	CitizenPtr Citizen1 = Citizen::create_pensioner("Samantha", "Sims", "Pace", "677", 24);
 	CitizenPtr Citizen2 = Citizen::create_pensioner("Samantha", "Sims", "Pace", "677", 24);
 	CitizenPtr Citizen3 = Citizen::create_pensioner("Samantha", "Sims", "Pace", "677", 24);
